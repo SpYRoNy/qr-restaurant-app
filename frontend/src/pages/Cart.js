@@ -54,20 +54,58 @@ function Cart() {
   );
 
   const placeOrder = async () => {
+    /* CUSTOMER */
+
+    const customer = JSON.parse(
+      localStorage.getItem(
+        "customer"
+      )
+    );
+
+    /* LOGIN CHECK */
+
+    if (!customer) {
+      alert(
+        "Please login first"
+      );
+
+      window.location.href =
+        "/customer-login";
+
+      return;
+    }
+
+    /* PLACE ORDER */
+
     await axios.post(
       "https://qr-restaurant-app-5eik.onrender.com/orders",
       {
         tableNo,
+
         items: cartItems,
+
+        total,
+
+        customerEmail:
+          customer?.email,
+
+        customerName:
+          customer?.name,
       }
     );
 
-    localStorage.removeItem("cart");
+    /* CLEAR CART */
 
-    alert("Order Placed");
+    localStorage.removeItem(
+      "cart"
+    );
+
+    alert(
+      "Order Placed Successfully"
+    );
 
     window.location.href =
-      "/?table=" + tableNo;
+      "/history";
   };
 
   return (
@@ -79,76 +117,206 @@ function Cart() {
         fontFamily: "sans-serif",
       }}
     >
-      <h1>🛒 Cart</h1>
+      {/* HEADER */}
 
-      <h3>Table Number: {tableNo}</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent:
+            "space-between",
+          alignItems: "center",
+          marginBottom: "30px",
+        }}
+      >
+        <div>
+          <h1
+            style={{
+              margin: 0,
+            }}
+          >
+            🛒 Your Cart
+          </h1>
+
+          <p
+            style={{
+              color: "#666",
+            }}
+          >
+            Table Number:
+            {" "}
+            {tableNo}
+          </p>
+        </div>
+      </div>
+
+      {/* EMPTY */}
 
       {cartItems.length === 0 ? (
-        <h2>Cart Empty</h2>
+        <div
+          style={{
+            background: "white",
+            padding: "40px",
+            borderRadius: "20px",
+            textAlign: "center",
+          }}
+        >
+          <h2>
+            Cart Empty 😔
+          </h2>
+        </div>
       ) : (
         <>
-          {cartItems.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                background: "white",
-                padding: "20px",
-                marginBottom: "15px",
-                borderRadius: "12px",
-                display: "flex",
-                justifyContent:
-                  "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <h2>{item.name}</h2>
+          {/* ITEMS */}
 
-                <p>
-                  Quantity:{" "}
-                  {item.quantity}
-                </p>
+          <div
+            style={{
+              display: "grid",
+              gap: "20px",
+            }}
+          >
+            {cartItems.map(
+              (item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    background:
+                      "white",
 
-                <p>
-                  ₹ {item.price}
-                </p>
-              </div>
+                    borderRadius:
+                      "20px",
 
-              <img
-                src={item.image}
-                alt={item.name}
-                style={{
-                  width: "120px",
-                  height: "100px",
-                  objectFit: "cover",
-                  borderRadius: "12px",
-                }}
-              />
-            </div>
-          ))}
+                    padding:
+                      "20px",
+
+                    display:
+                      "flex",
+
+                    justifyContent:
+                      "space-between",
+
+                    alignItems:
+                      "center",
+
+                    boxShadow:
+                      "0 4px 15px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  <div>
+                    <h2>
+                      {
+                        item.name
+                      }
+                    </h2>
+
+                    <p>
+                      Quantity:
+                      {" "}
+                      {
+                        item.quantity
+                      }
+                    </p>
+
+                    <h3
+                      style={{
+                        color:
+                          "#C9933A",
+                      }}
+                    >
+                      ₹{" "}
+                      {item.price *
+                        item.quantity}
+                    </h3>
+                  </div>
+
+                  <img
+                    src={
+                      item.image
+                    }
+                    alt={
+                      item.name
+                    }
+                    style={{
+                      width:
+                        "130px",
+
+                      height:
+                        "110px",
+
+                      objectFit:
+                        "cover",
+
+                      borderRadius:
+                        "16px",
+                    }}
+                  />
+                </div>
+              )
+            )}
+          </div>
+
+          {/* TOTAL */}
 
           <div
             style={{
               background: "white",
-              padding: "20px",
-              borderRadius: "12px",
+              marginTop: "30px",
+              padding: "30px",
+              borderRadius: "20px",
+              boxShadow:
+                "0 4px 15px rgba(0,0,0,0.08)",
             }}
           >
-            <h2>
-              Total: ₹ {total}
-            </h2>
+            <div
+              style={{
+                display: "flex",
+                justifyContent:
+                  "space-between",
+
+                alignItems:
+                  "center",
+              }}
+            >
+              <h1>Total</h1>
+
+              <h1
+                style={{
+                  color:
+                    "#C9933A",
+                }}
+              >
+                ₹ {total}
+              </h1>
+            </div>
 
             <button
-              onClick={placeOrder}
+              onClick={
+                placeOrder
+              }
               style={{
-                background: "#C9933A",
+                width: "100%",
+
+                background:
+                  "#C9933A",
+
                 border: "none",
+
                 padding:
-                  "14px 24px",
+                  "16px",
+
                 borderRadius:
-                  "30px",
-                fontWeight: "bold",
-                cursor: "pointer",
+                  "16px",
+
+                fontWeight:
+                  "bold",
+
+                fontSize:
+                  "16px",
+
+                cursor:
+                  "pointer",
+
+                marginTop:
+                  "20px",
               }}
             >
               Place Order

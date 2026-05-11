@@ -133,6 +133,15 @@ function CustomerMenu() {
         >
           🛒 Cart ({totalItems})
         </button>
+
+        <button
+  onClick={() =>
+    navigate('/customer-login')
+  }
+>
+  Login
+</button>
+
       </div>
 
       {/* HERO */}

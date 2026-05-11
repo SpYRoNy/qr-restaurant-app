@@ -11,6 +11,8 @@ import Dashboard from "./pages/Dashboard";
 import ManageMenu from "./pages/ManageMenu";
 import ManageTables from "./pages/ManageTables";
 import QrPage from "./pages/QrPage";
+import CustomerLogin from './pages/CustomerLogin';
+import OrderHistory from './pages/OrderHistory';
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,11 @@ function App() {
           path="/cart"
           element={<Cart />}
         />
+        <Route
+         path='/customer-login'
+         element={<CustomerLogin />}
+        />
+
 
         <Route
           path="/admin"
@@ -37,6 +44,11 @@ function App() {
           path="/dashboard"
           element={<Dashboard />}
         />
+        <Route
+          path='/history'
+          element={<OrderHistory />}
+        />
+
 
         <Route
           path="/manage-menu"
