@@ -21,7 +21,7 @@ function CustomerMenu() {
 
   const getMenu = async () => {
     const res = await axios.get(
-      "http://localhost:5000/menu"
+      "https://qr-restaurant-app-5eik.onrender.com/menu"
     );
 
     setMenu(res.data);

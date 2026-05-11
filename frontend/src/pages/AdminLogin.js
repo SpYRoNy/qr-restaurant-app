@@ -13,7 +13,7 @@ function AdminLogin() {
 
   const login = async () => {
     const res = await axios.post(
-      "http://localhost:5000/login",
+      "https://qr-restaurant-app-5eik.onrender.com/login",
       {
         username,
         password,

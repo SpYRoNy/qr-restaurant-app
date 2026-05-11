@@ -12,7 +12,7 @@ function Dashboard() {
 
   const getOrders = async () => {
     const res = await axios.get(
-      "http://localhost:5000/orders"
+      "https://qr-restaurant-app-5eik.onrender.com/orders"
     );
 
     setOrders(res.data.reverse());
@@ -23,7 +23,7 @@ function Dashboard() {
     status
   ) => {
     await axios.put(
-      `http://localhost:5000/orders/${id}`,
+      `https://qr-restaurant-app-5eik.onrender.com/orders/${id}`,
       {
         status,
       }
@@ -34,7 +34,7 @@ function Dashboard() {
 
   const deleteOrder = async (id) => {
     await axios.delete(
-      `http://localhost:5000/orders/${id}`
+      `https://qr-restaurant-app-5eik.onrender.com/orders/${id}`
     );
 
     getOrders();

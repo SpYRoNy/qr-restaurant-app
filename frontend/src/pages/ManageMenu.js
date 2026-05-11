@@ -22,7 +22,7 @@ function ManageMenu() {
 
   const getMenu = async () => {
     const res = await axios.get(
-      "http://localhost:5000/menu"
+      "https://qr-restaurant-app-5eik.onrender.com/menu"
     );
 
     setMenu(res.data);
@@ -41,7 +41,7 @@ function ManageMenu() {
     }
 
     await axios.post(
-      "http://localhost:5000/menu",
+      "https://qr-restaurant-app-5eik.onrender.com/menu",
       {
         name,
         price,

@@ -15,7 +15,7 @@ function ManageTables() {
 
   const getTables = async () => {
     const res = await axios.get(
-      "http://localhost:5000/tables"
+      "https://qr-restaurant-app-5eik.onrender.com/tables"
     );
 
     setTables(res.data);
@@ -25,7 +25,7 @@ function ManageTables() {
     if (!table) return;
 
     await axios.post(
-      "http://localhost:5000/tables",
+      "https://qr-restaurant-app-5eik.onrender.com/tables",
       {
         table,
       }
@@ -40,7 +40,7 @@ function ManageTables() {
     table
   ) => {
     await axios.delete(
-      `http://localhost:5000/tables/${table}`
+      `https://qr-restaurant-app-5eik.onrender.com/tables/${table}`
     );
 
     getTables();

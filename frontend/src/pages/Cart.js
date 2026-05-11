@@ -25,7 +25,7 @@ function Cart() {
       ) || {};
 
     const res = await axios.get(
-      "http://localhost:5000/menu"
+      "https://qr-restaurant-app-5eik.onrender.com/menu"
     );
 
     const menu = res.data;
@@ -55,7 +55,7 @@ function Cart() {
 
   const placeOrder = async () => {
     await axios.post(
-      "http://localhost:5000/orders",
+      "https://qr-restaurant-app-5eik.onrender.com/orders",
       {
         tableNo,
         items: cartItems,
