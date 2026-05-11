@@ -166,7 +166,7 @@ function ManageTables() {
                 }}
               >
                 <QRCode
-                  value={`http://localhost:3000/?table=${table}`}
+                  value={`https://classy-squirrel-6b8387.netlify.app/?table=${table}`}
                   size={180}
                 />
               </div>
@@ -180,7 +180,7 @@ function ManageTables() {
                     "break-all",
                 }}
               >
-                http://localhost:3000/?table=
+                https://classy-squirrel-6b8387.netlify.app/?table=
                 {table}
               </p>
 
